@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.DirectoryServices.ActiveDirectory;
 using System.Globalization;
 using System.Linq;
 using System.Text.Json;
@@ -248,10 +249,22 @@ namespace Microsoft.PowerToys.Settings.UI.ViewModels
                     format = ColorFormatHelper.GetDefaultFormat(storedName);
                 }
 
-                ColorFormatModel customColorFormat = new ColorFormatModel(storedName, format, storedColorFormat.Value.Key);
-                customColorFormat.PropertyChanged += ColorFormat_PropertyChanged;
-                ColorFormats.Add(customColorFormat);
-            }
+                bool isRounded = _colorPickerSettings.Properties.RoundableColorFormats.FirstOrDefault(s => s.Key == storedName).Value.Value;
+                bool isRoundable = _colorPickerSettings.Properties.RoundableColorFormats.FirstOrDefault(s => s.Key == storedName).Value.Key;
+
+                if (!isRoundable)
+                {
+                    ColorFormatModel customColorFormat = new ColorFormatModel(storedName, format, storedColorFormat.Value.Key);
+                    customColorFormat.PropertyChanged += ColorFormat_PropertyChanged;
+                    ColorFormats.Add(customColorFormat);
+                }
+                else
+                {
+                    ColorFormatModel customColorFormat = new ColorFormatModel(storedName, format, storedColorFormat.Value.Key, isRounded);
+                    customColorFormat.PropertyChanged += ColorFormat_PropertyChanged;
+                    ColorFormats.Add(customColorFormat);
+                }
+             }
 
             // Reordering colors with buttons: disable first and last buttons
             ColorFormats[0].CanMoveUp = false;

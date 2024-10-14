@@ -1694,6 +1694,9 @@ Made with 💗 by Microsoft and the PowerToys community.</value>
   <data name="MoveDown.Text" xml:space="preserve">
     <value>Move down</value>
   </data>
+  <data name="RoundToggle.Text" xml:space="preserve">
+    <value>Round to whole number</value>
+  </data>
   <data name="ColorPickerAddNewFormat.Content" xml:space="preserve">
     <value>Add new format</value>
   </data>

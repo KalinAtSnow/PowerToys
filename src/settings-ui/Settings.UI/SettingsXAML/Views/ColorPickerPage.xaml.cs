@@ -84,6 +84,22 @@ namespace Microsoft.PowerToys.Settings.UI.Views
             }
         }
 
+        private void RoundToInt(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            ColorFormatModel color = ((MenuFlyoutItem)sender).DataContext as ColorFormatModel;
+            if (color == null)
+            {
+                return;
+            }
+
+            var index = ViewModel.ColorFormats.IndexOf(color);
+            if (index < ViewModel.ColorFormats.Count - 1)
+            {
+                ViewModel.ColorFormats.Move(index, ++index);
+                SetColorFormatsFocus(index);
+            }
+        }
+
         private async void RemoveButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
             ColorFormatModel color = ((MenuFlyoutItem)sender).DataContext as ColorFormatModel;

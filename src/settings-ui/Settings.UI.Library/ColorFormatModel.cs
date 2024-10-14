@@ -19,13 +19,26 @@ namespace Microsoft.PowerToys.Settings.UI.Library
         private bool _canBeDeleted = true;
         private bool _isNew;
         private bool _isValid = true;
+        private bool _isRoundingToggleVisisble = true;
+        private bool _isRoundingToWholeNumbers;
 
-        public ColorFormatModel(string name, string format, bool isShown)
+        public ColorFormatModel(string name, string format, bool isShown) // string name, fromat, isShown, isRoundingSet)
+        {
+            Name = name;
+            Format = format;
+            IsShown = isShown;
+            _isRoundingToggleVisisble = false;
+            IsNew = false;
+        }
+
+        public ColorFormatModel(string name, string format, bool isShown, bool isRoundingToWholeNumbers)
         {
             Name = name;
             Format = format;
             IsShown = isShown;
             IsNew = false;
+            _isRoundingToWholeNumbers = isRoundingToWholeNumbers;
+            _isRoundingToggleVisisble = true;
         }
 
         public ColorFormatModel()
@@ -167,6 +180,26 @@ namespace Microsoft.PowerToys.Settings.UI.Library
 
             set
             {
+            }
+        }
+
+        public bool IsRoundingToggleVisisble
+        {
+            get => _isRoundingToggleVisisble;
+            set
+            {
+                _isRoundingToggleVisisble = value;
+                OnPropertyChanged(nameof(IsRoundingToggleVisisble));
+            }
+        }
+
+        public bool IsRoundingToWholeNumbers
+        {
+            get => _isRoundingToWholeNumbers;
+            set
+            {
+                _isRoundingToWholeNumbers = value;
+                OnPropertyChanged(nameof(_isRoundingToWholeNumbers));
             }
         }
 

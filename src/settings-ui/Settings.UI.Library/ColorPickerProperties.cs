@@ -37,6 +37,21 @@ namespace Microsoft.PowerToys.Settings.UI.Library
             VisibleColorFormats.Add("VEC4", new KeyValuePair<bool, string>(false, ColorFormatHelper.GetDefaultFormat("VEC4")));
             VisibleColorFormats.Add("Decimal", new KeyValuePair<bool, string>(false, ColorFormatHelper.GetDefaultFormat("Decimal")));
             VisibleColorFormats.Add("HEX Int", new KeyValuePair<bool, string>(false, ColorFormatHelper.GetDefaultFormat("HEX Int")));
+            RoundableColorFormats = new Dictionary<string, KeyValuePair<bool, bool>>();
+            RoundableColorFormats.Add("HEX", new KeyValuePair<bool, bool>(false, false));
+            RoundableColorFormats.Add("RGB", new KeyValuePair<bool, bool>(false, false));
+            RoundableColorFormats.Add("HSL", new KeyValuePair<bool, bool>(false, false));
+            RoundableColorFormats.Add("HSV", new KeyValuePair<bool, bool>(false, false));
+            RoundableColorFormats.Add("CMYK", new KeyValuePair<bool, bool>(false, false));
+            RoundableColorFormats.Add("HSB", new KeyValuePair<bool, bool>(false, false));
+            RoundableColorFormats.Add("HSI", new KeyValuePair<bool, bool>(false, false));
+            RoundableColorFormats.Add("HWB", new KeyValuePair<bool, bool>(false, false));
+            RoundableColorFormats.Add("NCol", new KeyValuePair<bool, bool>(false, false));
+            RoundableColorFormats.Add("CIELAB", new KeyValuePair<bool, bool>(true, false));
+            RoundableColorFormats.Add("CIEXYZ", new KeyValuePair<bool, bool>(false, false));
+            RoundableColorFormats.Add("VEC4", new KeyValuePair<bool, bool>(false, false));
+            RoundableColorFormats.Add("Decimal", new KeyValuePair<bool, bool>(false, false));
+            RoundableColorFormats.Add("HEX Int", new KeyValuePair<bool, bool>(false, false));
             ShowColorName = false;
             ActivationAction = ColorPickerActivationAction.OpenColorPickerAndThenEditor;
             CopiedColorRepresentation = "HEX";
@@ -67,6 +82,10 @@ namespace Microsoft.PowerToys.Settings.UI.Library
         [JsonPropertyName("visiblecolorformats")]
         [CmdConfigureIgnoreAttribute]
         public Dictionary<string, KeyValuePair<bool, string>> VisibleColorFormats { get; set; }
+
+        [JsonPropertyName("roundablecolorformats")]
+        [CmdConfigureIgnoreAttribute]
+        public Dictionary<string, KeyValuePair<bool, bool>> RoundableColorFormats { get; set; }
 
         [JsonPropertyName("showcolorname")]
         [JsonConverter(typeof(BoolPropertyJsonConverter))]

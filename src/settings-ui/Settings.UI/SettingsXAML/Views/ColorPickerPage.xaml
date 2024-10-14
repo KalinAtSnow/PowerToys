@@ -142,6 +142,12 @@
                                                         IsEnabled="{x:Bind CanMoveDown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                                     <MenuFlyoutSeparator />
                                                     <MenuFlyoutItem
+                                                        x:Uid="RoundToggle"
+                                                        Click="RoundToInt"
+                                                        Icon="{ui:FontIcon Glyph=&#xE74A;}"
+                                                        Visibility="{x:Bind IsRoundingToggleVisisble}"
+                                                        IsEnabled="{x:Bind CanMoveUp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                    <MenuFlyoutItem
                                                         x:Uid="RemoveItem"
                                                         Click="RemoveButton_Click"
                                                         Icon="{ui:FontIcon Glyph=&#xE74D;}"
