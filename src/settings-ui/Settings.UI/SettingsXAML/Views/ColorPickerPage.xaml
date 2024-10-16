@@ -140,33 +140,18 @@
                                                         Click="ReorderButtonDown_Click"
                                                         Icon="{ui:FontIcon Glyph=&#xE74B;}"
                                                         IsEnabled="{x:Bind CanMoveDown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-                                                    <MenuFlyoutItem x:Uid="RoundToggleTrue" Click="RoundToInt" Icon="{ui:FontIcon Glyph=&#xE739;}">
-                                                        <MenuFlyoutItem.Style>
-                                                            <Style TargetType="MenuFlyoutItem">
-                                                                <Setter Property="Visibility" Value="Collapsed"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Binding="{x:Bind IsRoundingToggleVisible}" Value="True">
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </MenuFlyoutItem.Style>
-                                                    </MenuFlyoutItem>
-
-                                                    <MenuFlyoutItem x:Uid="RoundToggleFalse" Click="RoundToInt" Icon="{ui:FontIcon Glyph=&#xE73A;}">
-                                                        <MenuFlyoutItem.Style>
-                                                            <Style TargetType="MenuFlyoutItem">
-                                                                <Setter Property="Visibility" Value="Visible"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Binding="{x:Bind IsRoundingToggleVisible}" Value="True">
-                                                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </MenuFlyoutItem.Style>
-                                                    </MenuFlyoutItem>
-
+                                                    
+                                                    <MenuFlyoutItem
+                                                        x:Uid="RoundToggle"
+                                                        Click="RoundToInt"
+                                                        Icon="{ui:FontIcon Glyph=&#xE739;}"
+                                                        Visibility="{x:Bind IsRoundingToggleVisisble}"/>
+                                                    <MenuFlyoutItem
+                                                        x:Uid="RoundToggle"
+                                                        Click="RoundToInt"
+                                                        Icon="{ui:FontIcon Glyph=&#xE73A;}"
+                                                        Visibility="{x:Bind IsRoundingToggleVisisble}"/>
+                                                    
                                                     <MenuFlyoutSeparator />
                                                     <MenuFlyoutItem
                                                         x:Uid="RemoveItem"
