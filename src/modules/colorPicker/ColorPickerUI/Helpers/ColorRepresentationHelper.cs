@@ -231,9 +231,9 @@ namespace ColorPicker.Helpers
         /// </summary>
         /// <param name="color">The <see cref="Color"/> for the CIE LAB color presentation</param>
         /// <returns>A <see cref="string"/> representation of a CIE LAB color</returns>
-        private static string ColorToCIELAB(Color color)
+        private static string ColorToCIELAB(Color color, bool isRoundValueToInt = false)
         {
-            var (lightness, chromaticityA, chromaticityB) = ColorFormatHelper.ConvertToCIELABColor(color);
+            var (lightness, chromaticityA, chromaticityB) = ColorFormatHelper.ConvertToCIELABColor(color, isRoundValueToInt);
             lightness = Math.Round(lightness, 2);
             chromaticityA = Math.Round(chromaticityA, 2);
             chromaticityB = Math.Round(chromaticityB, 2);

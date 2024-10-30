@@ -410,6 +410,62 @@ namespace Microsoft.ColorPicker.UnitTests
             Assert.AreEqual(Math.Round(result.ChromaticityB, 2), chromaticityB);
         }
 
+        [TestMethod]
+        [DataRow("FFFFFF", 100, 0, 0)] // white
+        [DataRow("808080", 54, 0, 0)] // gray
+        [DataRow("000000", 0, 0, 0)] // black
+        [DataRow("FF0000", 53, 80, 67)] // red
+        [DataRow("008000", 46, -52, 50)] // green
+        [DataRow("80FFFF", 93, -35, -11)] // cyan
+        [DataRow("8080FF", 59, 33, -63)] // blue
+        [DataRow("BFBF00", 75, -17, 76)] // yellow
+        [DataRow("008000", 46, -52, 50)] // green
+        [DataRow("8080FF", 59, 33, -63)] // blue
+        [DataRow("BF40BF", 50, 65, -41)] // magenta
+        [DataRow("0048BA", 34, 28, -65)] // absolute zero
+        [DataRow("B0BF1A", 74, -23, 71)] // acid green
+        [DataRow("D0FF14", 94, -40, 89)] // arctic lime
+        [DataRow("1B4D3E", 29, -21, 4)] // brunswick green
+        [DataRow("FFEF00", 93, -14, 91)] // canary yellow
+        [DataRow("FFA600", 75, 23, 79)] // cheese
+        [DataRow("1A2421", 13, -5, 1)] // dark jungle green
+        [DataRow("003399", 26, 29, -59)] // dark powder blue
+        [DataRow("D70A53", 46, 72, 18)] // debian red
+        [DataRow("80FFD5", 92, -45, 9)] // fathom secret green
+        [DataRow("EFDFBB", 89, 0, 20)] // dutch white
+        [DataRow("5218FA", 37, 76, -98)] // han purple
+        [DataRow("FF496C", 59, 70, 22)] // infra red
+        [DataRow("545AA7", 41, 19, -42)] // liberty
+        [DataRow("E6A8D7", 76, 30, -15)] // light orchid
+        [DataRow("ADDFAD", 84, -26, 19)] // light moss green
+        [DataRow("E3F988", 94, -24, 52)] // mindaro
+
+        public void ColorRGBtoCIELABRoundedTest(string hexValue, int lightness, int chromaticityA, int chromaticityB)
+        {
+            if (string.IsNullOrWhiteSpace(hexValue))
+            {
+                Assert.IsNotNull(hexValue);
+            }
+
+            Assert.IsTrue(hexValue.Length >= 6);
+
+            var red = int.Parse(hexValue.AsSpan(0, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+            var green = int.Parse(hexValue.AsSpan(2, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+            var blue = int.Parse(hexValue.AsSpan(4, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+
+            var color = Color.FromArgb(255, red, green, blue);
+            var result = ColorFormatHelper.ConvertToCIELABColor(color, roundValues: true);
+
+            // lightness[0..100]
+            Assert.AreEqual(Math.Round(result.Lightness), lightness);
+
+            // chromaticityA[-128..127]
+            Assert.AreEqual(Math.Round(result.ChromaticityA), chromaticityA);
+
+            // chromaticityB[-128..127]
+            Assert.AreEqual(Math.Round(result.ChromaticityB), chromaticityB);
+        }
+
         // The following results are computed using LittleCMS2, an open-source color management engine,
         // with the following command-line arguments:
         //   echo 0xFF 0xFF 0xFF | transicc -i "*sRGB" -o "*XYZ" -t 3 -d 0

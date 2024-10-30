@@ -183,13 +183,43 @@ namespace Microsoft.PowerToys.Settings.UI.Library
             }
         }
 
-        public bool IsRoundingToggleVisisble
+        public bool IsRoundingUncheckedToggleVisisble
         {
-            get => _isRoundingToggleVisisble;
+            get
+            {
+                if (_isRoundingToggleVisisble == false)
+                {
+                    return false;
+                }
+
+                return _isRoundingToWholeNumbers;
+            }
+
             set
             {
-                _isRoundingToggleVisisble = value;
-                OnPropertyChanged(nameof(IsRoundingToggleVisisble));
+                _isRoundingToWholeNumbers = value;
+                OnPropertyChanged(nameof(IsRoundingUncheckedToggleVisisble));
+                OnPropertyChanged(nameof(IsRoundingCheckedToggleVisisble));
+            }
+        }
+
+        public bool IsRoundingCheckedToggleVisisble
+        {
+            get
+            {
+                if (_isRoundingToggleVisisble == false)
+                {
+                    return false;
+                }
+
+                return !_isRoundingToWholeNumbers;
+            }
+
+            set
+            {
+                _isRoundingToggleVisisble = !value;
+                OnPropertyChanged(nameof(IsRoundingUncheckedToggleVisisble));
+                OnPropertyChanged(nameof(IsRoundingCheckedToggleVisisble));
             }
         }
 

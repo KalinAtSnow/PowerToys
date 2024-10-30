@@ -140,18 +140,18 @@
                                                         Click="ReorderButtonDown_Click"
                                                         Icon="{ui:FontIcon Glyph=&#xE74B;}"
                                                         IsEnabled="{x:Bind CanMoveDown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                                    
+
                                                     <MenuFlyoutItem
                                                         x:Uid="RoundToggle"
                                                         Click="RoundToInt"
                                                         Icon="{ui:FontIcon Glyph=&#xE739;}"
-                                                        Visibility="{x:Bind IsRoundingToggleVisisble}"/>
+                                                        Visibility="{x:Bind IsRoundingUncheckedToggleVisisble}"/>
                                                     <MenuFlyoutItem
                                                         x:Uid="RoundToggle"
                                                         Click="RoundToInt"
                                                         Icon="{ui:FontIcon Glyph=&#xE73A;}"
-                                                        Visibility="{x:Bind IsRoundingToggleVisisble}"/>
-                                                    
+                                                        Visibility="{x:Bind IsRoundingCheckedToggleVisisble}"/>
+
                                                     <MenuFlyoutSeparator />
                                                     <MenuFlyoutItem
                                                         x:Uid="RemoveItem"

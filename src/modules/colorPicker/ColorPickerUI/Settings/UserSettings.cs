@@ -84,6 +84,8 @@ namespace ColorPicker.Settings
 
         public ObservableCollection<System.Collections.Generic.KeyValuePair<string, string>> VisibleColorFormats { get; private set; } = new ObservableCollection<System.Collections.Generic.KeyValuePair<string, string>>();
 
+        public ObservableCollection<System.Collections.Generic.KeyValuePair<bool, bool>> RoundableColorFormats { get; private set; } = new ObservableCollection<KeyValuePair<bool, bool>>();
+
         public SettingItem<bool> ShowColorName { get; }
 
         private void LoadSettingsFromJson()
@@ -167,6 +169,12 @@ namespace ColorPicker.Settings
                                     {
                                         CopiedColorRepresentationFormat.Value = item.Value.Value;
                                     }
+                                }
+
+                                RoundableColorFormats.Clear();
+                                foreach (var format in settings.Properties.RoundableColorFormats)
+                                {
+                                    RoundableColorFormats.Add(new System.Collections.Generic.KeyValuePair<bool, bool>(format.Value.Key, format.Value.Value));
                                 }
                             }
 

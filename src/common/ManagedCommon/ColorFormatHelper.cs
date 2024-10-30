@@ -133,10 +133,15 @@ namespace ManagedCommon
         /// </summary>
         /// <param name="color">The <see cref="Color"/> to convert</param>
         /// <returns>The lightness [0..100] and two chromaticities [-128..127]</returns>
-        public static (double Lightness, double ChromaticityA, double ChromaticityB) ConvertToCIELABColor(Color color)
+        public static (double Lightness, double ChromaticityA, double ChromaticityB) ConvertToCIELABColor(Color color, bool roundValues = false)
         {
             var xyz = ConvertToCIEXYZColor(color);
             var lab = GetCIELABColorFromCIEXYZ(xyz.X, xyz.Y, xyz.Z);
+
+            if (roundValues)
+            {
+                lab = (Math.Round(lab.Lightness), Math.Round(lab.ChromaticityA), Math.Round(lab.ChromaticityB));
+            }
 
             return lab;
         }
