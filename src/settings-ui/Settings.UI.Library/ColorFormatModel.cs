@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 using ManagedCommon;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 namespace Microsoft.PowerToys.Settings.UI.Library
 {
@@ -183,26 +185,6 @@ namespace Microsoft.PowerToys.Settings.UI.Library
             }
         }
 
-        public bool IsRoundingUncheckedToggleVisisble
-        {
-            get
-            {
-                if (_isRoundingToggleVisisble == false)
-                {
-                    return false;
-                }
-
-                return _isRoundingToWholeNumbers;
-            }
-
-            set
-            {
-                _isRoundingToWholeNumbers = value;
-                OnPropertyChanged(nameof(IsRoundingUncheckedToggleVisisble));
-                OnPropertyChanged(nameof(IsRoundingCheckedToggleVisisble));
-            }
-        }
-
         public bool IsRoundingCheckedToggleVisisble
         {
             get
@@ -217,9 +199,26 @@ namespace Microsoft.PowerToys.Settings.UI.Library
 
             set
             {
-                _isRoundingToggleVisisble = !value;
-                OnPropertyChanged(nameof(IsRoundingUncheckedToggleVisisble));
+                _isRoundingToWholeNumbers = !value;
                 OnPropertyChanged(nameof(IsRoundingCheckedToggleVisisble));
+            }
+        }
+
+        public string RoundingCheckedIcon
+        {
+            get
+            {
+                if (IsRoundingToWholeNumbers)
+                {
+                    return "\uE739";
+                }
+
+                return "\uE73A";
+            }
+
+            set
+            {
+                OnPropertyChanged(nameof(RoundingCheckedIcon));
             }
         }
 

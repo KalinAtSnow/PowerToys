@@ -144,13 +144,11 @@
                                                     <MenuFlyoutItem
                                                         x:Uid="RoundToggle"
                                                         Click="RoundToInt"
-                                                        Icon="{ui:FontIcon Glyph=&#xE739;}"
-                                                        Visibility="{x:Bind IsRoundingUncheckedToggleVisisble}"/>
-                                                    <MenuFlyoutItem
-                                                        x:Uid="RoundToggle"
-                                                        Click="RoundToInt"
-                                                        Icon="{ui:FontIcon Glyph=&#xE73A;}"
-                                                        Visibility="{x:Bind IsRoundingCheckedToggleVisisble}"/>
+                                                        Visibility="{x:Bind IsRoundingCheckedToggleVisisble}">
+                                                        <MenuFlyoutItem.Icon>
+                                                            <FontIcon Glyph="{Binding RoundingCheckedIcon}"/>
+                                                        </MenuFlyoutItem.Icon>
+                                                    </MenuFlyoutItem>
 
                                                     <MenuFlyoutSeparator />
                                                     <MenuFlyoutItem

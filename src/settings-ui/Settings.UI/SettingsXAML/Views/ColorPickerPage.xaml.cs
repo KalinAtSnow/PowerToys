@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using CommunityToolkit.WinUI;
 using CommunityToolkit.WinUI.Controls;
 using Microsoft.PowerToys.Settings.UI.Helpers;
 using Microsoft.PowerToys.Settings.UI.Library;
@@ -86,18 +87,16 @@ namespace Microsoft.PowerToys.Settings.UI.Views
 
         private void RoundToInt(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
-            ColorFormatModel color = ((MenuFlyoutItem)sender).DataContext as ColorFormatModel;
+            MenuFlyoutItem menuItem = sender as MenuFlyoutItem;
+            ColorFormatModel color = menuItem.DataContext as ColorFormatModel;
             if (color == null)
             {
                 return;
             }
 
-            var index = ViewModel.ColorFormats.IndexOf(color);
-            if (index < ViewModel.ColorFormats.Count - 1)
-            {
-                ViewModel.ColorFormats.Move(index, ++index);
-                SetColorFormatsFocus(index);
-            }
+            color.IsRoundingToWholeNumbers = !color.IsRoundingToWholeNumbers;
+            color.RoundingCheckedIcon = string.Empty;
+            ColorFormats.UpdateLayout();
         }
 
         private async void RemoveButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
