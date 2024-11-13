@@ -313,7 +313,12 @@ namespace ManagedCommon
             { 's', "s" },       // string value
         };
 
-        public static string GetStringRepresentation(Color? color, string formatString)
+        public static bool IsCIELABbeRounded()
+        {
+
+        }
+
+        public static string GetStringRepresentation(Color? color, string formatString, bool roundCIELab = false)
         {
             if (color == null)
             {

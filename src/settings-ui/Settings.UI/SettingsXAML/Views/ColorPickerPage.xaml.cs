@@ -96,6 +96,7 @@ namespace Microsoft.PowerToys.Settings.UI.Views
 
             color.IsRoundingToWholeNumbers = !color.IsRoundingToWholeNumbers;
             color.RoundingCheckedIcon = string.Empty;
+
             ColorFormats.UpdateLayout();
         }
 
